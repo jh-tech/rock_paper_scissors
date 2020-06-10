@@ -3,7 +3,7 @@
     <body>
         
     <script>
-        let playerSelection = window.prompt().toLowerCase();
+        //let numberOfRounds = window.prompt("How many rounds do you want to play?");
 
         /*
         do {
@@ -13,17 +13,20 @@
         while (playerSelection != 6 ||  != 7); 
         */
 
+        function playerPlay()
+        {
+            return prompt("Rock, Paper or Scissors?").toLowerCase();
+        }
+
         function computerPlay()
         {
-        let choices = ['rock','paper','scissors']
+        let choices = ['rock','paper','scissors'];
         let choice = choices[Math.floor(Math.random() * choices.length)];
         return choice;
         }
-        const computerSelection = computerPlay();
-        let playerScore = 0;
-        let computerScore = 0;
 
-        function playRound(playerSelection,computerSelection){
+        function playRound(playerSelection,computerSelection)
+        {
             if (playerSelection == "rock")
             {
                 if (computerSelection == "paper")
@@ -38,7 +41,7 @@
                 }   
                 else
                 {
-                    return ("Draw! Both chose rock.")
+                    return ("Draw! Both chose rock.");
                 }
             }
             else if (playerSelection == "paper")
@@ -55,7 +58,7 @@
                 }   
                 else
                 {
-                    return ("Draw! Both chose Paper.")
+                    return ("Draw! Both chose Paper.");
                 } 
             }
             else
@@ -72,21 +75,47 @@
                 }   
                 else
                 {
-                    return ("Draw! Both chose Scissors.")
+                    return ("Draw! Both chose Scissors.");
                 } 
             }
         }
-        playRound(playerSelection,computerSelection);
-        
-        console.log(computerSelection);
-        console.log(playerSelection);
-        console.log(computerScore);
-        console.log(playerScore);
 
-        function game(playerSelection,computerSelection){
-            // code here
+        let playerScore = 0;
+        let computerScore = 0;
+
+        for (let i = 1; i < 6; i++)
+        {
+            let playerSelection = playerPlay();
+            let computerSelection = computerPlay();
+            console.log(`Round ${i}`);
+            console.log(playRound(playerSelection,computerSelection));
+            console.log(`\tPlayer Score: ${playerScore} \n\tComputer Score: ${computerScore}`);
+            
+            if (playerScore == 3)
+            {
+                console.log("Congrats! You won!");
+                break;
+            }
+            if (computerScore == 3)
+            {
+                console.log("Sorry! You lost!");
+                break;
+            }
+        } 
+        // needs some rework on the logic
+        if (playerScore > computerScore)
+        {
+            console.log("Congrats! You won!");
         }
-        
+        else if (computerScore > playerScore)
+        {
+            console.log("Sorry! You lost!");
+        }
+        else
+        {
+            console.log("Its a draw!");
+        }
+
     </script>
 
     </body>
